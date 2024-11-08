@@ -1,82 +1,41 @@
-# API ViaCEP
+# ConsultaCEP - Busca de Endereço pelo CEP
 
-Este projeto é uma API criada em JavaScript para consultar dados do ViaCEP. A API permite que os usuários obtenham informações detalhadas sobre um endereço brasileiro, fornecendo apenas o CEP (Código de Endereçamento Postal).
+Este projeto é uma aplicação simples em HTML e JavaScript para consulta de endereço através do serviço da API ViaCEP. Ao inserir um CEP válido, o sistema busca automaticamente o endereço associado e preenche os campos de endereço no formulário.
 
 ## Funcionalidades
 
-- **Consulta de CEP**: Busca dados completos de endereço usando apenas o CEP.
-- **Formato de Retorno**: Retorna informações em JSON, incluindo logradouro, bairro, cidade, estado, entre outros.
-- **Tratamento de Erros**: Validação para CEPs inválidos e tratamento de erros para consultas que não retornam resultados.
+- Consulta de endereço a partir do CEP informado.
+- Validação do formato de CEP (somente dígitos e no formato válido).
+- Mensagens de alerta caso o CEP seja inválido ou não encontrado.
 
-## Pré-requisitos
+## Tecnologias Utilizadas
 
-Antes de começar, você precisará ter o [Node.js](https://nodejs.org/) instalado para rodar o projeto.
+- **HTML5**: Estrutura da página.
+- **JavaScript**: Lógica de consulta e manipulação do DOM.
+- **API ViaCEP**: Serviço para obtenção de dados de endereço a partir de um CEP.
 
-## Instalação
+## Estrutura do Projeto
 
-1. Clone o repositório:
+- `index.html`: Contém o código HTML e JavaScript para a aplicação.
+- `assets/css/`: Pasta reservada para arquivos CSS (caso adicione estilos no futuro).
 
-    ```bash
-    git clone https://github.com/seu-usuario/api-viacep-js.git
-    ```
+## Como Usar
 
-2. Acesse o diretório do projeto:
+1. Clone este repositório para o seu ambiente local.
+2. Abra o arquivo `index.html` em qualquer navegador.
+3. Insira um CEP válido no campo de CEP.
+4. O endereço será preenchido automaticamente nos campos de formulário.
 
-    ```bash
-    cd api-viacep-js
-    ```
+## Exemplo de Uso
 
-3. Instale as dependências:
+1. Digite um CEP (e.g., `01001000`).
+2. Ao sair do campo de CEP, o sistema automaticamente preenche os campos de rua, bairro, cidade, estado e IBGE.
 
-    ```bash
-    npm install
-    ```
+## Requisitos
 
-## Uso
+- Navegador com suporte a JavaScript.
 
-1. Inicie a aplicação:
+## Créditos
 
-    ```bash
-    npm start
-    ```
+O serviço de consulta de CEP é fornecido pela [API ViaCEP](https://viacep.com.br/).
 
-2. Faça uma requisição para a API com um CEP válido. Exemplo de URL:
-
-    ```
-    http://localhost:3000/cep/01001000
-    ```
-
-3. A resposta será semelhante a:
-
-    ```json
-    {
-      "cep": "01001-000",
-      "logradouro": "Praça da Sé",
-      "complemento": "lado ímpar",
-      "bairro": "Sé",
-      "localidade": "São Paulo",
-      "uf": "SP",
-      "ibge": "3550308",
-      "gia": "1004",
-      "ddd": "11",
-      "siafi": "7107"
-    }
-    ```
-
-## Exemplo de Código
-
-Abaixo está um exemplo de como fazer uma requisição para a API usando JavaScript (Node.js):
-
-```javascript
-const axios = require('axios');
-
-async function getAddressByCep(cep) {
-    try {
-        const response = await axios.get(`http://localhost:3000/cep/${cep}`);
-        console.log(response.data);
-    } catch (error) {
-        console.error('Erro ao buscar o CEP:', error);
-    }
-}
-
-getAddressByCep('01001000');
